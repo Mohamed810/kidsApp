@@ -1,7 +1,8 @@
 import 'dart:math';
 
-import 'package:audioplayers/audio_cache.dart';
 import 'package:flutter/material.dart';
+import './quiz.dart';
+import './result.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -9,128 +10,105 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  var player = AudioCache();
-  Map<String, bool> score = {};
-  Map<String, String> choices = {
-    'أ':'أسد',
-    'ب':'بطة',
-    'ت':'تفاحة',
-    'ث':'ثعبان',
-    'ج':'جمل',
-    'ح':'حصان',
-    'خ':'خروف',
-    /*'د':'أسد',
-    'ذ':'أسد',
-    'ر':'أسد',
-    'ز':'أسد',
-    'س':'أسد',
-    'ش':'أسد',
-    'ص':'أسد',
-    'ض':'أسد',
-    'ط':'أسد',
-    'ظ':'أسد',
-    'ع':'أسد',
-    'غ':'أسد',
-    'ف':'أسد',
-    'ق':'أسد',
-    'ك':'أسد',
-    'ل':'أسد',
-    'م':'أسد',
-    'ن':'أسد',
-    'ه':'أسد',
-    'و':'أسد',
-    'ى':'أسد',*/
-  };
-  int index = 0;
+  final _questions = const [
+    {
+      'questionText': 'كلمة تبدأ بحرف أ ؟',
+      'answers': [
+        {'text': 'حمار', 'score': -2, 'correct': false},
+        {'text': 'بطة', 'score': -2, 'correct': false},
+        {'text': 'أرنب', 'score': 10, 'correct': true},
+        {'text': 'يمامة', 'score': -2, 'correct': false},
+      ],
+    },
+    {
+      'questionText': 'كلمة تبدأ بحرف ت ؟',
+      'answers': [
+        {'text': 'ثعبان', 'score': -2, 'correct': false},
+        {'text': 'دب', 'score': -2, 'correct': false},
+        {'text': 'كلب', 'score': -2, 'correct': false},
+        {'text': 'تمر', 'score': 10, 'correct': true},
+      ],
+    },
+    {
+      'questionText': 'كلمة تبدأ بحرف ج ؟',
+      'answers': [
+        {'text': 'حصان', 'score': -2, 'correct': false},
+        {'text': 'جمل', 'score': 10, 'correct': true},
+        {'text': 'تفاحة', 'score': -2, 'correct': false},
+        {'text': 'قطة', 'score': -2, 'correct': false},
+      ],
+    },
+    {
+      'questionText': 'كلمة تبدأ بحرف س ؟',
+      'answers': [
+        {'text': 'سكين', 'score': 10, 'correct': true},
+        {'text': 'قلم', 'score': -2, 'correct': false},
+        {'text': 'شجرة', 'score': -2, 'correct': false},
+        {'text': 'ضابط', 'score': -2, 'correct': false},
+      ],
+    },
+    {
+      'questionText': 'هل كلمة عصفور تبدأ بحرف ع ؟',
+      'answers': [
+        {'text': 'نعم', 'score': 10, 'correct': true},
+        {'text': 'لا', 'score': -2, 'correct': false},
+      ],
+    },
+  ];
+
+  var _questionIndex = 0;
+  var _totalScore = 0;
+
+  void _resetQuiz() {
+    setState(() {
+      _questionIndex = 0;
+      _totalScore = 0;
+    });
+  }
+
+  void _answerQuestion(int score,bool correct) {
+    _totalScore += score;
+    if(correct == true)
+      {
+        setState(() {
+          _questionIndex = _questionIndex + 1;
+        });
+      }
+    print(_questionIndex);
+    if (_questionIndex < _questions.length) {
+      print('We have more questions!');
+    } else {
+      print('No more questions!');
+    }
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        title: Text('Your Scores'),
-      ),
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: choices.keys.map((element){
-              return Expanded(
-                  child: Draggable(
-                    data: element,
-                    child: Text(score[element] == true ? '✔' : element,style: TextStyle(color: Colors.black,fontSize: 40)),
-                    feedback: Text(element,style: TextStyle(color: Colors.black,fontSize: 40)),
-                    childWhenDragging: Text(element,style: TextStyle(color: Colors.black,fontSize: 40)),
-                  ),
-              );
-            }).toList(),
+        appBar: AppBar(
+          backgroundColor: Colors.red,
+          title: Text(
+            'ألعب',
+            style: TextStyle(
+              fontFamily: 'Lalezar',
+              fontSize: 25,
+            ),
           ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: choices.keys.map((element){
-              return buildTarget(element);
-          }).toList()..shuffle(Random(index)),
-          ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.refresh),
-        onPressed: (){
-          setState(() {
-            score.clear();
-            index++;
-          });
-        },
-      ),
-    );
-  }
-  Widget buildTarget(element){
-    return DragTarget(
-        // ignore: missing_return
-        builder: (context, incoming, rejected){
-          if(score[element] == true){
-            return Container(
-              color: Colors.white,
-              child: Text('تم بنجاح'),
-              alignment: Alignment.center,
-              height: 30,
-              width: 50,
-            );
-          }else{
-            return Container(
-              child:Text(choices[element],style: TextStyle(color: Colors.black,fontSize: 40)),
-              alignment: Alignment.center,
-              height: 50,
-              width: 80,
-            );
-          }
-        },
-      onWillAccept: (data) => data == element,
-      onAccept: (data) {
-        setState(() {
-          score[element] = true;
-          player.play('clap.mp3');
-        });
-      },
-      onLeave: (data) {},
+          centerTitle: true,
+        ),
+
+        body: Padding(
+          padding: const EdgeInsets.all(30.0),
+          child: _questionIndex < _questions.length
+              ? Quiz(
+            answerQuestion: _answerQuestion,
+            questionIndex: _questionIndex,
+            questions: _questions,
+            Score: _totalScore,
+          ) //Quiz
+              : Result(_totalScore, _resetQuiz),
+        ), //Padding
     );
   }
 }
-/*class Movable extends StatelessWidget {
-  final String char;
-  Movable(this.char);
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      color: Colors.transparent,
-      child: Container(
-        alignment: Alignment.center,
-        height: 50,
-        padding: EdgeInsets.all(15),
-        child: Text(char,style: TextStyle(color: Colors.black,fontSize: 40),),
-      ),
-    );
-  }
-}*/
