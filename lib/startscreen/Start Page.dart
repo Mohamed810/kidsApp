@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:learning_app/startscreen/learnPage.dart';
-import 'package:learning_app/home.dart';
+
+import '../home.dart';
+import 'learnPage.dart';
+
 
 class StartPage extends StatefulWidget {
   @override

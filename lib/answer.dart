@@ -13,9 +13,9 @@ class Answer extends StatelessWidget {
       child: RaisedButton(
         color: Colors.red,
         textColor: Colors.white,
-        child: Text(answerText, style: TextStyle(fontSize: 30),),
+        child: Text(answerText, style: TextStyle(fontSize: 30,fontFamily: 'Lalezar',),),
         onPressed: selectHandler,
-      ), //RaisedButton
-    ); //Container
+      ),
+    );
   }
 }

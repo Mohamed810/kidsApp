@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import './answer.dart';
-import './question.dart';
+import 'package:learning_app/question.dart';
+
+import 'answer.dart';
 
 class Quiz extends StatelessWidget {
   final List<Map<String, Object>> questions;
@@ -20,23 +21,33 @@ class Quiz extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text.rich(TextSpan(
+        Text.rich(
+          TextSpan(
             children: [
-              TextSpan(text: "عدد النقاط: ",style: TextStyle(fontSize: 25,)),
-              TextSpan(text: "$Score", style: TextStyle(
-                  color: Colors.red,
-                  fontSize: 30.0
-              ))
-            ]
-        )),
+              TextSpan(
+                  text: "عدد النقاط: ",
+                  style: TextStyle(
+                    fontFamily: 'Lalezar',
+                    fontSize: 25,
+                  )
+              ),
+              TextSpan(
+                text: "$Score",
+                style: TextStyle(color: Colors.red, fontSize: 30.0,fontFamily: 'Lalezar',),
+              )
+            ],
+          ),
+        ),
         Question(
           questions[questionIndex]['questionText'],
-        ), //Question
+        ),
         ...(questions[questionIndex]['answers'] as List<Map<String, Object>>)
             .map((answer) {
-          return Answer(() => answerQuestion(answer['score'],answer['correct']), answer['text']);
+          return Answer(
+              () => answerQuestion(answer['score'], answer['correct']),
+              answer['text']);
         }).toList()
       ],
-    ); //Column
+    );
   }
 }

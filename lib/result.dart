@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audio_cache.dart';
-import 'package:learning_app/level2.dart';
+import 'package:learning_app/startscreen/Start%20Page.dart';
+
+import 'level2.dart';
 
 class Result extends StatelessWidget {
   var player = AudioCache();
@@ -39,18 +41,18 @@ class Result extends StatelessWidget {
         children: <Widget>[
           Text(
             resultPhrase,
-            style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold,fontFamily: 'Lalezar',),
             textAlign: TextAlign.center,
-          ), //Text
+          ),
           Text(
             'عدد النقاط ' '$resultScore',
-            style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold,fontFamily: 'Lalezar',),
             textAlign: TextAlign.center,
-          ), //Text
+          ),
           FlatButton(
             child: Text(
               'أعادة الامتحان!',
-              style: TextStyle(fontSize: 30),
+              style: TextStyle(fontSize: 30,fontFamily: 'Lalezar',),
             ), //Text
             textColor: Colors.blue,
             onPressed: resetHandler,
@@ -58,17 +60,29 @@ class Result extends StatelessWidget {
           FlatButton(
             child: Text(
               'الي المستوي التالي!',
-              style: TextStyle(fontSize: 30),
-            ), //Text
-            textColor: Colors.red,
+              style: TextStyle(fontSize: 30,fontFamily: 'Lalezar',),
+            ),
+            textColor: Colors.orange,
             onPressed: () {
+              Navigator.pop(context);
               Navigator.push(context, MaterialPageRoute(builder: (context){
                 return Draging();
               }));
             },
-          ),//FlatButton
-        ], //<Widget>[]
-      ), //Column
-    ); //Center
+          ),
+          FlatButton(
+            child: Text(
+              'إلى صفحة البدء',
+              style: TextStyle(fontSize: 30,fontFamily: 'Lalezar',),
+            ),
+            textColor: Colors.green,
+            onPressed: (){
+              Navigator.pop(context);
+
+            },
+          ),
+        ],
+      ),
+    );
   }
 }

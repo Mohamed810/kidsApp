@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import './quiz.dart';
 import './result.dart';
@@ -14,44 +12,44 @@ class _HomeState extends State<Home> {
     {
       'questionText': 'كلمة تبدأ بحرف أ ؟',
       'answers': [
-        {'text': 'حمار', 'score': -2, 'correct': false},
-        {'text': 'بطة', 'score': -2, 'correct': false},
+        {'text': 'حمار', 'score': 0, 'correct': false},
+        {'text': 'بطة', 'score': 0, 'correct': false},
         {'text': 'أرنب', 'score': 10, 'correct': true},
-        {'text': 'يمامة', 'score': -2, 'correct': false},
+        {'text': 'يمامة', 'score': 0, 'correct': false},
       ],
     },
     {
       'questionText': 'كلمة تبدأ بحرف ت ؟',
       'answers': [
-        {'text': 'ثعبان', 'score': -2, 'correct': false},
-        {'text': 'دب', 'score': -2, 'correct': false},
-        {'text': 'كلب', 'score': -2, 'correct': false},
+        {'text': 'ثعبان', 'score': 0, 'correct': false},
+        {'text': 'دب', 'score': 0, 'correct': false},
+        {'text': 'كلب', 'score': 0, 'correct': false},
         {'text': 'تمر', 'score': 10, 'correct': true},
       ],
     },
     {
       'questionText': 'كلمة تبدأ بحرف ج ؟',
       'answers': [
-        {'text': 'حصان', 'score': -2, 'correct': false},
+        {'text': 'حصان', 'score': 0, 'correct': false},
         {'text': 'جمل', 'score': 10, 'correct': true},
-        {'text': 'تفاحة', 'score': -2, 'correct': false},
-        {'text': 'قطة', 'score': -2, 'correct': false},
+        {'text': 'تفاحة', 'score': 0, 'correct': false},
+        {'text': 'قطة', 'score': 0, 'correct': false},
       ],
     },
     {
       'questionText': 'كلمة تبدأ بحرف س ؟',
       'answers': [
         {'text': 'سكين', 'score': 10, 'correct': true},
-        {'text': 'قلم', 'score': -2, 'correct': false},
-        {'text': 'شجرة', 'score': -2, 'correct': false},
-        {'text': 'ضابط', 'score': -2, 'correct': false},
+        {'text': 'قلم', 'score': 0, 'correct': false},
+        {'text': 'شجرة', 'score': 0, 'correct': false},
+        {'text': 'ضابط', 'score': 0, 'correct': false},
       ],
     },
     {
       'questionText': 'هل كلمة عصفور تبدأ بحرف ع ؟',
       'answers': [
         {'text': 'نعم', 'score': 10, 'correct': true},
-        {'text': 'لا', 'score': -2, 'correct': false},
+        {'text': 'لا', 'score': 0, 'correct': false},
       ],
     },
   ];
@@ -106,9 +104,9 @@ class _HomeState extends State<Home> {
             questionIndex: _questionIndex,
             questions: _questions,
             Score: _totalScore,
-          ) //Quiz
+          )
               : Result(_totalScore, _resetQuiz),
-        ), //Padding
+        ),
     );
   }
 }

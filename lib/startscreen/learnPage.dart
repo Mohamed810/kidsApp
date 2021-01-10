@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audio_cache.dart';
+import 'package:learning_app/models/LearningModel.dart';
 
 class LearnPage extends StatefulWidget {
   @override
@@ -9,125 +10,63 @@ class LearnPage extends StatefulWidget {
 class _LearnPageState extends State<LearnPage> {
   var player = AudioCache();
   int index = 0;
-  List<String> characters = [
-    'أ',
-    'ب',
-    'ت',
-    'ث',
-    'ج',
-    'ح',
-    'خ',
-    'د',
-    'ذ',
-    'ر',
-    'ز',
-    'س',
-    'ش',
-    'ص',
-    'ض',
-    'ط',
-    'ظ',
-    'ع',
-    'غ',
-    'ف',
-    'ق',
-    'ك',
-    'ل',
-    'م',
-    'ن',
-    'ھ',
-    'و',
-    'ي'
-  ];
-  List<String> images = [
-    'images/ارنب.png',
-    'images/بطة.png',
-    'images/تفاحة.png',
-    'images/ثعلب.png',
-    'images/جمل.png',
-    'images/حمار.png',
-    'images/خروف.png',
-    'images/دب.png',
-    'images/ذيل.png',
-    'images/رمان.png',
-    'images/زهرة.png',
-    'images/سمكة.png',
-    'images/شجرة.png',
-    'images/صاروخ.png',
-    'images/ضابط.png',
-    'images/طائرة.png',
-    'images/ظرف.png',
-    'images/عصفور.png',
-    'images/غسالة.png',
-    'images/فيل.png',
-    'images/قلم.png',
-    'images/كتاب.png',
-    'images/لعب.png',
-    'images/مفتاح.png',
-    'images/نحلة.png',
-    'images/هدية.png',
-    'images/ورقة.png',
-    'images/يمامة.png',
-  ];
-  List<String> voiceWord = [
-    'assets/words/ارنب.mp3',
-    'assets/words/بطة.mp3',
-    'assets/words/تفاحة.mp3',
-    'assets/words/ثعلب.mp3',
-    'assets/words/جمل.mp3',
-    'assets/words/حمار.mp3',
-    'assets/words/خروف.mp3',
-    'assets/words/دب.mp3',
-    'assets/words/ذيل.mp3',
-    'assets/words/رمان.mp3',
-    'assets/words/زهرة.mp3',
-    'assets/words/سمكة.mp3',
-    'assets/words/شجرة.mp3',
-    'assets/words/صاروخ.mp3',
-    'assets/words/ضابط.mp3',
-    'assets/words/طائرة.mp3',
-    'assets/words/ظرف.mp3',
-    'assets/words/عصفور.mp3',
-    'assets/words/غسالة.mp3',
-    'assets/words/فيل.mp3',
-    'assets/words/قلم.mp3',
-    'assets/words/كتاب.mp3',
-    'assets/words/لعب.mp3',
-    'assets/words/مفتاح.mp3',
-    'assets/words/نحلة.mp3',
-    'assets/words/هدية.mp3',
-    'assets/words/ورقة.mp3',
-    'assets/words/يمامة.mp3'
-  ];
-  List<String> voicechar = [
-    'أ.mp3',
-    'ب.mp3',
-    'ت.mp3',
-    'ث.mp3',
-    'ج.mp3',
-    'ح.mp3',
-    'خ.mp3',
-    'د.mp3',
-    'ذ.mp3',
-    'ر.mp3',
-    'ز.mp3',
-    'س.mp3',
-    'ش.mp3',
-    'ص.mp3',
-    'ض.mp3',
-    'ط.mp3',
-    'ظ.mp3',
-    'ع.mp3',
-    'غ.mp3',
-    'ف.mp3',
-    'ق.mp3',
-    'ك.mp3',
-    'ل.mp3',
-    'م.mp3',
-    'ن.mp3',
-    'ه.mp3',
-    'و.mp3',
-    'ى.mp3'
+  List<LearningModel> learningModel = [
+    LearningModel(
+        character: 'أ', characterVoice: 'أ.mp3', image: 'images/ارنب.png'),
+    LearningModel(
+        character: 'ب', characterVoice: 'ب.mp3', image: 'images/بطة.png'),
+    LearningModel(
+        character: 'ت', characterVoice: 'ت.mp3', image: 'images/تفاحة.png'),
+    LearningModel(
+        character: 'ث', characterVoice: 'ث.mp3', image: 'images/ثعلب.png'),
+    LearningModel(
+        character: 'ج', characterVoice: 'ج.mp3', image: 'images/جمل.png'),
+    LearningModel(
+        character: 'ح', characterVoice: 'ح.mp3', image: 'images/حمار.png'),
+    LearningModel(
+        character: 'خ', characterVoice: 'خ.mp3', image: 'images/خروف.png'),
+    LearningModel(
+        character: 'د', characterVoice: 'د.mp3', image: 'images/دب.png'),
+    LearningModel(
+        character: 'ذ', characterVoice: 'ذ.mp3', image: 'images/ذيل.png'),
+    LearningModel(
+        character: 'ر', characterVoice: 'ر.mp3', image: 'images/رمان.png'),
+    LearningModel(
+        character: 'ز', characterVoice: 'ز.mp3', image: 'images/زهرة.png'),
+    LearningModel(
+        character: 'س', characterVoice: 'س.mp3', image: 'images/سمكة.png'),
+    LearningModel(
+        character: 'ش', characterVoice: 'ش.mp3', image: 'images/شجرة.png'),
+    LearningModel(
+        character: 'ص', characterVoice: 'ص.mp3', image: 'images/صاروخ.png'),
+    LearningModel(
+        character: 'ض', characterVoice: 'ض.mp3', image: 'images/ضابط.png'),
+    LearningModel(
+        character: 'ط', characterVoice: 'ط.mp3', image: 'images/طائرة.png'),
+    LearningModel(
+        character: 'ظ', characterVoice: 'ظ.mp3', image: 'images/ظرف.png'),
+    LearningModel(
+        character: 'ع', characterVoice: 'ع.mp3', image: 'images/عصفور.png'),
+    LearningModel(
+        character: 'غ', characterVoice: 'غ.mp3', image: 'images/غسالة.png'),
+    LearningModel(
+        character: 'ف', characterVoice: 'ف.mp3', image: 'images/فيل.png'),
+    LearningModel(
+        character: 'ق', characterVoice: 'ق.mp3', image: 'images/قلم.png'),
+    LearningModel(
+        character: 'ك', characterVoice: 'ك.mp3', image: 'images/كتاب.png'),
+    LearningModel(
+        character: 'ل', characterVoice: 'ل.mp3', image: 'images/لعب.png'),
+    LearningModel(
+        character: 'م', characterVoice: 'م.mp3', image: 'images/مفتاح.png'),
+    LearningModel(
+        character: 'ن', characterVoice: 'ن.mp3', image: 'images/نحلة.png'),
+    LearningModel(
+        character: 'ه', characterVoice: 'ه.mp3', image: 'images/هدية.png'),
+    LearningModel(
+        character: 'و', characterVoice: 'و.mp3', image: 'images/ورقة.png'),
+    LearningModel(
+        character: 'ي', characterVoice: 'ى.mp3', image: 'images/يمامة.png')
   ];
 
   @override
@@ -135,7 +74,7 @@ class _LearnPageState extends State<LearnPage> {
     void Incremet() {
       setState(() {
         index++;
-        if (index > images.length - 1) index = 0;
+        if (index > learningModel.length - 1) index = 0;
       });
     }
 
@@ -185,7 +124,7 @@ class _LearnPageState extends State<LearnPage> {
                     color: Color(0xFF364f6b),
                     borderRadius: BorderRadius.circular(15),
                   ),
-                  child: Image.asset('${images[index]}'),
+                  child: Image.asset('${learningModel[index].image}'),
                 ),
               ),
               ImageIcon(
@@ -203,19 +142,20 @@ class _LearnPageState extends State<LearnPage> {
               FlatButton(
                 onPressed: () {
                   setState(() {
-                    player.play('${voicechar[index]}');
+                    player.play('${learningModel[index].characterVoice}');
                   });
                 },
                 child: Container(
                   child: Center(
-                      child: Text(
-                    '${characters[index]}',
-                    style: TextStyle(
-                      fontSize: 50,
-                      color: Colors.white,
-                      fontFamily: 'Lalezar',
+                    child: Text(
+                      '${learningModel[index].character}',
+                      style: TextStyle(
+                        fontSize: 50,
+                        color: Colors.white,
+                        fontFamily: 'Lalezar',
+                      ),
                     ),
-                  )),
+                  ),
                   width: 250,
                   height: 100,
                   decoration: BoxDecoration(

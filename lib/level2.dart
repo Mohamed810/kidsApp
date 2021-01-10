@@ -25,7 +25,7 @@ class _DragState extends State<Draging> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.orange,
         title: Text(
           'ألعب',
           style: TextStyle(
@@ -95,7 +95,7 @@ class _DragState extends State<Draging> {
           return Container(
             child: Text(
                 choices[element],
-                style: TextStyle(color: Colors.black, fontSize: 25)
+                style: TextStyle(color: Colors.black,fontSize: 25,fontFamily: 'Lalezar',)
             ),
             alignment: Alignment.center,
             height: 50,
